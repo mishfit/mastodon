@@ -153,7 +153,6 @@ en:
         active: Active
         all: All
         pending: Pending
-        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes

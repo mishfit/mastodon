@@ -7,4 +7,15 @@ module Admin::DashboardHelper
 
     safe_join([feature, content_tag(:span, indicator, class: class_names)])
   end
+
+  def relevant_account_ip(account, ip_query)
+    matched_ip = begin
+      ip_query_addr = IPAddr.new(ip_query)
+      account.user.recent_ips.find { |(_, ip)| ip_query_addr.include?(ip) }
+    rescue IPAddr::Error
+      [account.user_current_sign_in_at, account.user_current_sign_in_ip]
+    end
+
+    matched_ip.last
+  end
 end
